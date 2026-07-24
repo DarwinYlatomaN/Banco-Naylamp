@@ -1,0 +1,286 @@
+/* ==========================================
+   VARIABLES GLOBALES
+   ========================================== */
+:root {
+    --navy: #0b1526;
+    --navy-light: #16263f;
+    --navy-lighter: #1e3250;
+    --gold: #dfa32b;
+    --gold-light: #e5a93b;
+    --teal: #1cd3b6;
+    --teal-light: #e0f4f1;
+    --bg-color: #f4f7fb;
+    --card-bg: #ffffff;
+    --text-main: #0b1526;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-color); color: var(--text-main); }
+
+/* ==========================================
+   NAVEGACIÓN Y ENCABEZADO
+   ========================================== */
+.dash-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+.breadcrumb { font-size: 0.9rem; color: var(--text-muted); }
+.breadcrumb strong { color: var(--navy); }
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.nav-links a:hover { color: var(--navy); }
+.active-pill { background-color: var(--navy); color: #ffffff !important; padding: 0.5rem 1.2rem; border-radius: 50px; }
+
+.catalog-header {
+    background-color: var(--navy);
+    padding: 3rem 2rem;
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Patrón de fondo sutil para el header */
+.catalog-header::before {
+    content: '';
+    position: absolute;
+    top: -50px; left: -50px; right: -50px; bottom: -50px;
+    background: radial-gradient(circle at 15% 50%, rgba(28, 211, 182, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(229, 169, 59, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.header-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; }
+.module-tag { color: var(--teal); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+.catalog-header h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; }
+.catalog-header p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
+
+/* Barra de búsqueda */
+.search-bar {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.search-bar input {
+    width: 100%;
+    padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    outline: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s;
+}
+.search-bar input:focus { box-shadow: 0 10px 30px rgba(28, 211, 182, 0.2); }
+.search-icon {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+/* ==========================================
+   ESTRUCTURA PRINCIPAL Y FILTROS
+   ========================================== */
+.catalog-main { max-width: 1250px; margin: 2.5rem auto; padding: 0 2rem; }
+
+.filter-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    justify-content: center;
+}
+
+.filter-btn {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+.filter-btn.active { background-color: var(--navy); border-color: var(--navy); color: white; }
+
+.catalog-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; align-items: start; }
+
+/* ==========================================
+   TARJETAS DE CURSOS
+   ========================================== */
+.courses-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.catalog-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.8rem;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeIn 0.4s ease-out;
+}
+.catalog-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+
+.card-icon {
+    width: 60px; height: 60px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+/* Colores de Iconos por Categoría */
+.basica-icon { background-color: #e0f2fe; color: #0284c7; }
+.credito-icon { background-color: #fef9c3; color: #ca8a04; }
+.ciber-icon { background-color: #fce7f3; color: #db2777; }
+.emp-icon { background-color: #dcfce7; color: #16a34a; }
+
+.card-content { flex: 1; }
+.cat-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 0.5rem; }
+.cat-basica { color: #0284c7; }
+.cat-credito { color: #ca8a04; }
+.cat-ciber { color: #db2777; }
+.cat-emp { color: #16a34a; }
+
+.card-content h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem; font-weight: 700; }
+.card-content p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+
+.card-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1rem; }
+.course-time { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; }
+
+.btn-outline-navy {
+    background: transparent;
+    border: 2px solid var(--navy);
+    color: var(--navy);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-outline-navy:hover { background: var(--navy); color: white; }
+
+.no-results {
+    text-align: center; padding: 3rem; background: white; border-radius: 16px; border: 1px dashed var(--border-color); display: none;
+}
+.no-results i { font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem; }
+.no-results h3 { color: var(--navy); margin-bottom: 0.5rem; }
+
+/* ==========================================
+   GLOSARIO FINANCIERO (SIDEBAR)
+   ========================================== */
+.sidebar-column { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.glosario-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.glosario-header { text-align: center; margin-bottom: 1.5rem; }
+.glosario-icon {
+    width: 50px; height: 50px;
+    background-color: var(--gold-light); color: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin: 0 auto 1rem;
+}
+.glosario-header h2 { font-size: 1.3rem; color: var(--navy); margin-bottom: 0.4rem; font-family: 'Playfair Display', serif; }
+.glosario-header p { font-size: 0.9rem; color: var(--text-muted); }
+
+/* Acordeón */
+.accordion-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.accordion-item { border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; }
+
+.accordion-btn {
+    width: 100%;
+    background-color: #f8fafc;
+    border: none;
+    padding: 1rem 1.2rem;
+    text-align: left;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+.accordion-btn strong { color: var(--navy); margin-right: 0.3rem; font-size: 0.95rem; }
+.accordion-btn i { color: var(--gold-light); transition: transform 0.3s; }
+.accordion-btn:hover { background-color: #f1f5f9; }
+.accordion-btn.active i { transform: rotate(180deg); }
+
+.accordion-content {
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.accordion-content p { padding: 1rem 1.2rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; border-top: 1px solid var(--border-color); }
+
+.promo-card {
+    background-color: var(--navy);
+    border-radius: 16px;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
+.promo-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
+.promo-card p { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1.5rem; line-height: 1.5; }
+.btn-gold-solid {
+    display: inline-block;
+    background-color: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: filter 0.2s;
+}
+.btn-gold-solid:hover { filter: brightness(0.95); }
+
+/* ==========================================
+   ANIMACIONES Y RESPONSIVO
+   ========================================== */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 992px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .catalog-header h1 { font-size: 2.2rem; }
+}
+
+@media (max-width: 768px) {
+    .dash-nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .nav-links { flex-wrap: wrap; justify-content: center; }
+    .catalog-header { padding: 2rem 1.5rem; }
+    .catalog-header h1 { font-size: 1.8rem; }
+    .catalog-main { padding: 0 1rem; margin: 1.5rem auto; }
+    
+    .catalog-card { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+    .card-icon { width: 50px; height: 50px; font-size: 1.3rem; }
+}

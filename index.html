@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naylamp Banco - Aula Financiera</title>
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome (Iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styleIndex.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <!-- Logo y Marca -->
+            <div class="logo-section">
+                <div class="logo-icon">
+                          <span class="logo-n">N</span>
+                </div> 
+                <div class="logo-text">
+                    <span class="brand-name">Naylamp Banco</span>
+                    <span class="brand-tagline">AULA FINANCIERA</span>
+                </div>
+            </div>
+
+            <!-- Barra de Búsqueda -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="¿Qué quieres aprender hoy?">
+            </div>
+
+            <!-- Acciones de Usuario -->
+            <div class="nav-actions">
+                <button class="user-btn" aria-label="Cuenta de usuario">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button class="btn-primary" id="btnEmpezar">Empezar aquí</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section Principal -->
+    <main class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <!-- Etiqueta Insignia -->
+                <div class="badge">
+                    <i class="fa-regular fa-star badge-icon"></i>
+                    <span>EDUCACIÓN FINANCIERA GRATUITA</span>
+                </div>
+
+                <!-- Título Principal -->
+                <h1 class="hero-title">
+                    Tu futuro financiero comienza aquí. <span class="highlight">Fácil. Intuitivo. Naylamp.</span>
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="hero-subtitle">
+                    Aprende a usar tus productos financieros, domina la banca digital y toma mejores decisiones económicas para ti y tu familia.
+                </p>
+
+                <!-- Botones de Acción -->
+                <div class="hero-buttons">
+                    <a href="#cursos" class="btn-teal">Explorar Cursos Gratuitos</a>
+                    <a href="simulador.html" class="btn-outline">Probar Simulador</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barra de Acento Inferior -->
+        <div class="bottom-accent-bar"></div>
+    </main>
+    <!-- Sección de Estadísticas -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <i class="fa-solid fa-users stat-icon"></i>
+                <div class="stat-text">
+                    <span class="stat-number">12,400+</span>
+                    <span class="stat-label">Usuarios activos</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-regular fa-star stat-icon"></i>
+                <div class="stat-text">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfacción</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-book-open stat-icon"></i>
+                <div class="stat-text">
+                    <span class="stat-number">34</span>
+                    <span class="stat-label">Módulos gratuitos</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-award stat-icon"></i>
+                <div class="stat-text">
+                    <span class="stat-number">8,200+</span>
+                    <span class="stat-label">Certificados emitidos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal de Ingreso de Usuario -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fa-regular fa-user"></i></div>
+                <h2>Tu Aula Financiera</h2>
+                <p>Ingresa tu nombre para registrar tu progreso.</p>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="userNameInput">Usuario</label>
+                    <input type="text" id="userNameInput" placeholder="Tú usuario" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="userPasswordInput">Contraseña Web</label>
+                    <input type="password" id="userPasswordInput" placeholder="••••••••">
+                </div>
+                <button id="saveUserBtn" class="btn-teal" style="width: 100%; margin-top: 1rem; padding: 0.85rem;">Ingresar a mi panel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script del index -->
+    <script src="index.js"></script>
+</body>
+
+</body>
+</html>

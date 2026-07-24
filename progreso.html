@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Progreso - Banco Naylamp</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styleProgreso.css">
+</head>
+<body>
+
+    <!-- Navegación Superior -->
+    <nav class="dash-nav">
+        <div class="breadcrumb">
+            <span>Inicio</span> &gt; <strong>Mi Progreso</strong>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="modulo.html"><i class="fa-solid fa-book-open"></i> Módulo</a>
+            <a href="simulador.html"><i class="fa-solid fa-calculator"></i> Simulador</a>
+            <a href="progreso.html" class="active-pill"><i class="fa-solid fa-chart-simple"></i> Mi Progreso</a>
+        </div>
+    </nav>
+
+    <!-- Encabezado de Sección -->
+    <header class="dash-header">
+        <div class="header-content">
+            <span class="module-tag">MI AULA FINANCIERA</span>
+            <h1>Panel de Progreso</h1>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="dash-main">
+        
+        <!-- Tarjeta de Bienvenida Principal -->
+        <section class="welcome-banner">
+            <div class="welcome-top">
+               <div class="user-greeting">
+                    <span class="welcome-text">Bienvenido de vuelta,</span>
+                    <h2 id="greetingName">¡Hola! 👋</h2>
+                    <p>Estás mejorando tus finanzas cada día.</p>
+               </div>
+                <div class="level-badge">
+                    <i class="fa-solid fa-trophy"></i>
+                    <div class="level-info">
+                        <span>NIVEL</span>
+                        <strong>Explorador Financiero</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de Progreso General -->
+            <div class="overall-progress">
+                    <div class="progress-labels">
+                        <span>Progreso General</span>
+                        <strong id="pct-general">0%</strong>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill fill-teal" id="bar-general" style="width: 0%; transition: width 0.5s ease;"></div>
+                    </div>
+            </div>
+            
+            <!-- Logros / Badges -->
+            <div class="achievements-row">
+                <div class="achievement active"><i class="fa-solid fa-shield-halved"></i> Seguridad Digital <i class="fa-regular fa-star"></i></div>
+                <div class="achievement active"><i class="fa-solid fa-border-all"></i> Experto Digital <i class="fa-regular fa-star"></i></div>
+                <div class="achievement inactive"><i class="fa-solid fa-piggy-bank"></i> Ahorrador Experto</div>
+                <div class="achievement inactive"><i class="fa-solid fa-star"></i> Maestro Crediticio</div>
+            </div>
+        </section>
+            
+        <!-- Cuadrícula de Contenido a 2 Columnas -->
+        <div class="dashboard-grid">
+            
+            <!-- Columna Izquierda: Lista de Cursos -->
+            <div class="courses-column">
+                <h3 class="section-title">Mis Cursos en Curso</h3>
+                
+                <!-- ESTE ES EL CONTENEDOR DONDE EL JS CARGARÁ LOS 7 MÓDULOS -->
+                <div id="courseList"></div>
+            </div>
+
+            <!-- Columna Derecha: Widgets Laterales -->
+            <aside class="sidebar-column">
+                
+                <!-- Widget Historial -->
+                <div class="widget-card">
+                    <h3 class="widget-title">Historial de Validaciones</h3>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <div class="history-info">
+                                <strong>Módulo 1: Banca Digital Segura</strong>
+                                <span>05 Jun 2026</span>
+                            </div>
+                            <span class="score-pill">9/10</span>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-info">
+                                <strong>Módulo 3: Cómo usar tu Débito</strong>
+                                <span>08 Jun 2026</span>
+                            </div>
+                            <span class="score-pill">8/10</span>
+                        </div>
+                    </div>
+                    <!-- Botón de Certificado -->
+                    <button id="btnCertificado" class="btn btn-gold btn-full" style="margin-top: 1rem;"><i class="fa-solid fa-download"></i> Descargar Certificado</button>
+                </div>
+
+                <!-- Widget de Ayuda -->
+                <div class="widget-card widget-dark">
+                    <h3 class="widget-title">¿Sigues con dudas?</h3>
+                    <p>Estamos aquí para ayudarte a entender tus finanzas.</p>
+                    <div class="widget-actions">
+                        <button class="btn btn-teal btn-full"><i class="fa-regular fa-comment-dots"></i> Chatear con Naylamp Bot</button>
+                        <button class="btn btn-dark btn-full"><i class="fa-solid fa-phone"></i> Hablar con un Asesor</button>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- JS -->
+    <script src="progreso.js"></script>
+</body>
+</html>

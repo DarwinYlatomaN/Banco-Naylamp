@@ -1,0 +1,98 @@
+/* ==========================================
+   VARIABLES Y RESET
+   ========================================== */
+:root {
+    --navy: #0b1526;
+    --navy-light: #16263f;
+    --gold: #e5a93b;
+    --teal: #1cd3b6;
+    --bg-color: #f4f7fb;
+    --card-bg: #ffffff;
+    --text-main: #0b1526;
+    --text-muted: #64748b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-color); color: var(--text-main); }
+
+/* ==========================================
+   CONTENEDOR DEL CURSO
+   ========================================== */
+.curso-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.curso-container {
+    width: 100%;
+    max-width: 800px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(11, 21, 38, 0.08);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==========================================
+   CABECERA Y PROGRESO
+   ========================================== */
+.curso-top { text-align: center; margin-bottom: 2.5rem; }
+.module-tag { color: #0f8e79; font-size: 0.8rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+.curso-top h1 { color: var(--navy); font-size: 2.2rem; margin-top: 0.5rem; font-family: 'Playfair Display', serif; }
+
+.progress-labels { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-muted); }
+.progress-labels strong { color: var(--navy); font-size: 1.2rem; font-weight: 800; }
+
+.progress-track { width: 100%; height: 10px; background-color: #e2e8f0; border-radius: 50px; overflow: hidden; margin-bottom: 2.5rem; }
+.progress-fill { height: 100%; border-radius: 50px; background-color: var(--teal); transition: width 0.5s ease-in-out; }
+
+/* ==========================================
+   ÁREA DE CONTENIDO (DIAPOSITIVAS)
+   ========================================== */
+.slide-content {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2.5rem;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-content h2 { color: var(--navy); font-size: 1.5rem; margin-bottom: 1rem; }
+.slide-content p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; }
+
+/* ==========================================
+   BOTONES
+   ========================================== */
+.leccion-actions { display: flex; gap: 1rem; margin-top: 2.5rem; }
+.btn { padding: 1rem 1.5rem; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.btn-navy { background-color: var(--navy); color: white; flex: 2; }
+.btn-navy:hover { background-color: var(--navy-light); transform: translateY(-2px); }
+.btn-light { background-color: #f1f5f9; color: var(--navy); flex: 1; }
+.btn-light:hover { background-color: #e2e8f0; }
+
+/* ==========================================
+   RESPONSIVO (MÓVILES)
+   ========================================== */
+@media (max-width: 768px) {
+    .curso-wrapper { padding: 1rem; }
+    .curso-container { padding: 1.5rem; }
+    .curso-top h1 { font-size: 1.8rem; }
+    .slide-content { padding: 1.5rem; min-height: 200px; }
+    .slide-content h2 { font-size: 1.3rem; }
+    .slide-content p { font-size: 1rem; }
+    .leccion-actions { flex-direction: column-reverse; }
+    .btn { width: 100%; }
+}

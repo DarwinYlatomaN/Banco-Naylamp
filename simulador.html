@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador - Banco Naylamp</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styleSimulador.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar (Simplified for Simulator) -->
+    <nav class="sim-nav">
+        <div class="breadcrumb">
+            <span>Inicio</span> > <strong>Simulador de Tasas</strong>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="modulo.html"><i class="fa-solid fa-book-open"></i> Módulo</a>
+            <a href="simulador.html" class="active-pill"><i class="fa-solid fa-calculator"></i> Simulador</a>
+            <a href="progreso.html"><i class="fa-solid fa-chart-simple"></i> Mi Progreso</a>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <header class="sim-header">
+        <div class="header-content">
+            <span class="module-tag">MÓDULO 3 · HERRAMIENTA INTERACTIVA</span>
+            <h1>Simulador: El Verdadero Costo de tu Compra</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="sim-main">
+        
+        <!-- Left Column: Control Panel -->
+        <section class="control-panel">
+            <div class="panel-header">
+                <div class="icon-box"><i class="fa-solid fa-calculator"></i></div>
+                <h2>Panel de Control</h2>
+            </div>
+
+            <!-- Slider: Monto -->
+            <div class="control-group">
+                <div class="group-header">
+                    <label>Monto de compra</label>
+                    <div class="value-badge badge-dark" id="montoBadge">S/ 1,000.00</div>
+                </div>
+                <input type="range" id="montoSlider" min="200" max="10000" step="100" value="1000" class="slider slider-blue">
+                <div class="slider-labels">
+                    <span>S/ 200</span>
+                    <span>S/ 10,000</span>
+                </div>
+            </div>
+
+            <!-- Radio Group: Tarjetas -->
+            <div class="control-group">
+                <label class="group-title">Tarjeta de Crédito</label>
+                <div class="cards-selector">
+                    <div class="card-option active" data-tea="0.45">
+                        <span class="card-name">Naylamp Clásica</span>
+                        <span class="card-rate rate-gold">TEA 45%</span>
+                    </div>
+                    <div class="card-option" data-tea="0.38">
+                        <span class="card-name">Naylamp Gold</span>
+                        <span class="card-rate">TEA 38%</span>
+                    </div>
+                    <div class="card-option" data-tea="0.28">
+                        <span class="card-name">Naylamp Platinum</span>
+                        <span class="card-rate">TEA 28%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggle: Tipo de Pago -->
+            <div class="control-group">
+                <label class="group-title">Tipo de Pago</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn active" id="btnCuotas">Pagar en Cuotas</button>
+                    <button class="toggle-btn" id="btnMinimo">Solo Pago Mínimo</button>
+                </div>
+            </div>
+
+            <!-- Slider: Cuotas -->
+            <div class="control-group" id="cuotasGroup">
+                <div class="group-header">
+                    <label>Número de cuotas</label>
+                    <div class="value-badge badge-gold" id="cuotasBadge">12 meses</div>
+                </div>
+                <input type="range" id="cuotasSlider" min="1" max="36" step="1" value="12" class="slider slider-gold">
+                <div class="slider-labels">
+                    <span>1 mes</span>
+                    <span>36 meses</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column: Results Panel -->
+        <section class="results-panel">
+            <h2>Resultados Visuales</h2>
+
+            <!-- Cards Grid -->
+            <div class="results-grid">
+                <div class="result-card card-capital">
+                    <span class="rc-label">CAPITAL</span>
+                    <span class="rc-value" id="lblCapital">S/ 1,000.00</span>
+                </div>
+                <div class="result-card card-interes">
+                    <span class="rc-label">INTERESES</span>
+                    <span class="rc-value" id="lblIntereses">S/ 215.99</span>
+                </div>
+            </div>
+
+            <!-- Total Card -->
+            <div class="total-card">
+                <span class="tc-label">TOTAL A PAGAR</span>
+                <span class="tc-value" id="lblTotal">S/ 1,215.99</span>
+                <span class="tc-sub" id="lblDetalle">S/ 101.33 / mes × 12 cuotas</span>
+            </div>
+
+            <!-- Donut Chart -->
+            <div class="chart-container">
+                <div class="donut-chart" id="donutChart">
+                    <div class="donut-hole"></div>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <span class="dot dot-capital"></span>
+                        Capital (<span id="legCapital">S/ 1,000.00</span>)
+                    </div>
+                    <div class="legend-item">
+                        <span class="dot dot-interes"></span>
+                        Intereses (<span id="legInteres">S/ 215.99</span>)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advice Box -->
+            <div class="advice-box" id="adviceBox">
+                <div class="advice-icon">
+                    <i class="fa-solid fa-arrow-trend-down"></i>
+                </div>
+                <div class="advice-content">
+                    <h4><i class="fa-regular fa-lightbulb"></i> Consejo Naylamp</h4>
+                    <p id="adviceText">Reduce de <strong>12</strong> a <strong>6</strong> cuotas y ahorrarías <strong>S/ 103.08</strong> en intereses.</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- JS -->
+    <script src="simulador.js"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Módulos - Banco Naylamp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="modulo.css">
+</head>
+<body>
+
+    <nav class="dash-nav">
+        <div class="breadcrumb">
+            <span>Inicio</span> &gt; <strong>Módulos</strong>
+        </div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="modulo.html" class="active-pill"><i class="fa-solid fa-book-open"></i> Módulo</a>
+            <a href="simulador.html"><i class="fa-solid fa-calculator"></i> Simulador</a>
+            <a href="progreso.html"><i class="fa-solid fa-chart-simple"></i> Mi Progreso</a>
+        </div>
+    </nav>
+
+    <header class="catalog-header">
+        <div class="header-content">
+            <span class="module-tag">BIBLIOTECA FINANCIERA</span>
+            <h1>Catálogo de Cursos</h1>
+            <p>Explora nuestros módulos, aprende a tu propio ritmo y toma el control de tus finanzas.</p>
+            
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="¿Qué deseas aprender hoy? (Ej. Intereses, App, Tarjetas...)">
+            </div>
+        </div>
+    </header>
+
+    <main class="catalog-main">
+        
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="todos">Todos los Cursos</button>
+            <button class="filter-btn" data-filter="basica"><i class="fa-solid fa-mobile-screen"></i> Banca Básica</button>
+            <button class="filter-btn" data-filter="credito"><i class="fa-regular fa-credit-card"></i> Crédito Inteligente</button>
+            <button class="filter-btn" data-filter="ciberseguridad"><i class="fa-solid fa-shield-halved"></i> Ciberseguridad</button>
+            <button class="filter-btn" data-filter="emprendedores"><i class="fa-solid fa-store"></i> Emprendedores</button>
+        </div>
+
+        <div class="catalog-grid">
+            
+            <div class="courses-list" id="coursesList">
+                
+                <!-- Curso: App -->
+                <div class="catalog-card" data-category="basica">
+                    <div class="card-icon basica-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div class="card-content">
+                        <span class="cat-label cat-basica">Banca Básica</span>
+                        <h3>Uso de la App Naylamp</h3>
+                        <p>Aprende a navegar por nuestra aplicación, revisar tus saldos y configurar tus alertas de seguridad.</p>
+                        <div class="card-bottom">
+                            <span class="course-time"><i class="fa-regular fa-clock"></i> 45 min</span>
+                            <button class="btn-outline-navy" data-id="app">Ver Módulo &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso: Ahorro -->
+                <div class="catalog-card" data-category="basica">
+                    <div class="card-icon basica-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                    <div class="card-content">
+                        <span class="cat-label cat-basica">Banca Básica</span>
+                        <h3>Ahorro Inteligente con Naylamp</h3>
+                        <p>Domina las transferencias interbancarias, uso del CCI y descubre cómo sacarle el máximo provecho a tus ahorros.</p>
+                        <div class="card-bottom">
+                            <span class="course-time"><i class="fa-regular fa-clock"></i> 30 min</span>
+                            <button class="btn-outline-navy" data-id="ahorro">Ver Módulo &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso: Débito -->
+                <div class="catalog-card" data-category="credito">
+                    <div class="card-icon credito-icon"><i class="fa-regular fa-credit-card"></i></div>
+                    <div class="card-content">
+                        <span class="cat-label cat-credito">Crédito Inteligente</span>
+                        <h3>Cómo usar mi Tarjeta de Débito</h3>
+                        <p>Configura tu tarjeta para compras por internet, maneja tus límites diarios y enciende o apaga la tarjeta desde la app.</p>
+                        <div class="card-bottom">
+                            <span class="course-time"><i class="fa-regular fa-clock"></i> 55 min</span>
+                            <button class="btn-outline-navy" data-id="debito">Ver Módulo &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso: Crédito -->
+                <div class="catalog-card" data-category="credito">
+                    <div class="card-icon credito-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="card-content">
+                        <span class="cat-label cat-credito">Crédito Inteligente</span>
+                        <h3>Crédito Responsable</h3>
+                        <p>Descubre cómo leer un cronograma, entender la amortización y las ventajas de los pagos anticipados.</p>
+                        <div class="card-bottom">
+                            <span class="course-time"><i class="fa-regular fa-clock"></i> 60 min</span>
+                            <button class="btn-outline-navy" data-id="credito">Ver Módulo &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso: Intereses -->
+                <div class="catalog-card" data-category="credito">
+                    <div class="card-icon credito-icon"><i class="fa-solid fa-percent"></i></div>
+                    <div class="card-content">
+                        <span class="cat-label cat-credito">Crédito Inteligente</span>
+                        <h3>Entendiendo los Intereses</h3>
+                        <p>Conoce la diferencia entre TEA y TREA, y cómo funciona el interés compuesto a tu favor.</p>
+                        <div class="card-bottom">
+                            <span class="course-time"><i class="fa-regular fa-clock"></i> 40 min</span>
+                            <button class="btn-outline-navy" data-id="intereses">Ver Módulo &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso: Ciberseguridad -->
+                <div class="catalog-card" data-category="ciberseguridad">
+                    <div class="card-icon ciber-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="card-content">
+                        <span class="cat-label cat-ciber">Ciberseguridad</span>
+                        <h3>Cómo evitar estafas y phishing</h3>
+                        <p>Aprende a identificar correos falsos, mensajes fraudulentos y las mejores prácticas para cuidar tus claves web.</p>
+                        <div class="card-bottom">
+                            <span class="course-time"><i class="fa-regular fa-clock"></i> 40 min</span>
+                            <button class="btn-outline-navy" data-id="ciberseguridad">Ver Módulo &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso: Emprendedores -->
+                <div class="catalog-card" data-category="emprendedores">
+                    <div class="card-icon emp-icon"><i class="fa-solid fa-store"></i></div>
+                    <div class="card-content">
+                        <span class="cat-label cat-emp">Emprendedores</span>
+                        <h3>Finanzas para Pequeños Negocios</h3>
+                        <p>Separa tus cuentas personales del negocio, aprende a cobrar con POS y gestionar pagos masivos con Yape Empresa.</p>
+                        <div class="card-bottom">
+                            <span class="course-time"><i class="fa-regular fa-clock"></i> 75 min</span>
+                            <button class="btn-outline-navy" data-id="emprendedores">Ver Módulo &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="no-results" id="noResultsMsg">
+                    <i class="fa-regular fa-face-frown-open"></i>
+                    <h3>No encontramos cursos con esa búsqueda</h3>
+                    <p>Intenta con otras palabras clave como "Ahorro", "Tarjeta" o "Seguridad".</p>
+                </div>
+
+            </div>
+
+            <aside class="sidebar-column">
+                <div class="glosario-card">
+                    <div class="glosario-header">
+                        <div class="glosario-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                        <h2>El Diccionario Naylamp</h2>
+                        <p>Tus términos bancarios explicados en español sencillo.</p>
+                    </div>
+                    
+                    <div class="accordion-list">
+                        <div class="accordion-item">
+                            <button class="accordion-btn"><strong>TEA</strong> (Tasa Efectiva Anual) <i class="fa-solid fa-chevron-down"></i></button>
+                            <div class="accordion-content"><p>Es el porcentaje real que te cuesta un préstamo o un crédito durante un año.</p></div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-btn"><strong>TREA</strong> (Tasa de Rendimiento) <i class="fa-solid fa-chevron-down"></i></button>
+                            <div class="accordion-content"><p>Indica cuánto crecerá tu dinero guardado en una cuenta de ahorros en un año.</p></div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-btn"><strong>CCI</strong> (Cuenta Interbancaria) <i class="fa-solid fa-chevron-down"></i></button>
+                            <div class="accordion-content"><p>Código de 20 dígitos para recibir o enviar dinero de un banco a otro distinto de forma segura.</p></div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-btn"><strong>Phishing</strong> <i class="fa-solid fa-chevron-down"></i></button>
+                            <div class="accordion-content"><p>Estafa digital donde se hacen pasar por tu banco para robar tus claves.</p></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="promo-card">
+                    <h3>¿Listo para empezar?</h3>
+                    <p>Recuerda que completar tus módulos al 100% te otorga un <strong>Certificado Oficial</strong>.</p>
+                    <a href="progreso.html" class="btn-gold-solid">Ver mi Panel de Progreso</a>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <script src="modulo.js"></script>
+</body>
+</html>

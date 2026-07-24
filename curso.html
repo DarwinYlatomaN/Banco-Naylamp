@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Interactiva - Banco Naylamp</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="curso.css">
+</head>
+<body>
+
+    <div class="curso-wrapper">
+        <div class="curso-container">
+            
+            <!-- Cabecera -->
+            <div class="curso-top">
+                <span class="module-tag">MÓDULO DE APRENDIZAJE NAYLAMP</span>
+                <h1 id="cursoTitle">Cargando lección...</h1>
+            </div>
+
+            <!-- Barra de Progreso del Módulo -->
+            <div class="progress-labels">
+                <span>Tu avance en este módulo</span>
+                <strong id="cursoPct">0%</strong>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="cursoBar" style="width: 0%;"></div>
+            </div>
+
+            <!-- Caja Interactiva de Lectura -->
+            <div class="slide-content" id="slideBox">
+                <h2 id="slideTitle">Cargando contenido...</h2>
+                <p id="slideText">Por favor, espera un momento mientras preparamos tu aula interactiva.</p>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="leccion-actions">
+                <button id="btnVolver" class="btn btn-light"><i class="fa-solid fa-arrow-left"></i> Volver al panel</button>
+                <button id="btnAvanzar" class="btn btn-navy">Siguiente lección <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="curso.js"></script>
+</body>
+</html>

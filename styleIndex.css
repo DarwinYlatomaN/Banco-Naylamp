@@ -1,0 +1,534 @@
+
+
+/* Elimina márgenes y rellenos por defecto, y ajusta el cálculo de tamaños */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Establece la tipografía principal, color de fondo oscuro, texto blanco y evita scroll horizontal */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0c182b;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+
+/* Define el contenedor fijo superior con fondo oscuro y un borde sutil abajo */
+.navbar {
+    background-color: #0b1526;
+    padding: 0.85rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 100;
+}
+
+/* Centra el contenido de la barra y distribuye el logo, buscador y botones */
+.nav-container {
+    max-width: 1350px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+/* Agrupa el icono y los textos del logo con alineación horizontal */
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+/* Crea un círculo dorado centrado para albergar el icono de la marca */
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    background-color: #e5a93b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:  #1a2e4f;
+}
+
+/* Apila verticalmente el nombre de la marca y la bajada */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Define el estilo y tamaño del nombre "Naylamp Banco" */
+.brand-name {
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+/* Define el estilo en color turquesa y letras espaciadas para "AULA FINANCIERA" */
+.brand-tagline {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #1cd3b6;
+    margin-top: 2px;
+}
+
+/* Posiciona la barra de búsqueda para que crezca y ocupe el centro */
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 480px;
+    margin: 0 1rem;
+}
+
+/* Estiliza el campo de texto de búsqueda con bordes redondeados tipo píldora */
+.search-box input {
+    width: 100%;
+    background-color: #16263f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.65rem 1rem 0.65rem 2.8rem;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Define el color del texto indicativo (placeholder) dentro del buscador */
+.search-box input::placeholder {
+    color: #8fa0bd;
+}
+
+/* Ilumina el borde en turquesa cuando el usuario hace clic dentro del buscador */
+.search-box input:focus {
+    border-color: #1cd3b6;
+    background-color: #1a2c49;
+}
+
+/* Posiciona el icono de la lupa dentro y a la izquierda de la barra de búsqueda */
+.search-icon {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8fa0bd;
+    font-size: 0.9rem;
+}
+
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.user-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:  #1a2e4f;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.user-btn:hover {
+    background-color: #203556;
+}
+
+
+.btn-primary {
+    background-color: #1cd3b6;
+    color: #0c182b;
+    border: none;
+    padding: 0.75rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.logo-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+   display: flex;
+   align-items:center;
+   justify-content: center;;
+}
+
+
+.btn-primary:hover {
+    background-color: #18be32;
+    transform: translateY(-1px);
+}
+
+
+.hero {
+    position: relative;
+    min-height: calc(100vh - 70px);
+   background: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1920') center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+}
+/* Capa de degradado oscuro sobre la imagen de fondo para garantizar legibilidad del texto */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    /* Degradado profesional: Mantiene el azul marino del banco y se desvanece suavemente */
+    background: linear-gradient(
+        90deg, 
+        #0b1526 0%, 
+        rgba(11, 21, 38, 0.95) 15%, 
+        rgba(11, 21, 38, 0.40) 65%, 
+        transparent 100%
+    );
+    z-index: 1;
+}
+
+/* Contenedor que limita el ancho del contenido del Hero y lo ubica sobre el degradado */
+.hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* Limita el ancho del texto para evitar líneas demasiado largas */
+.hero-content {
+    max-width: 620px;
+}
+
+/* Diseña la etiqueta / insignia dorada flotante superior */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(229, 169, 59, 0.1);
+    border: 1px solid rgba(229, 169, 59, 0.4);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    color: #e5a93b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+}
+
+/* Ajusta el tamaño de la estrella dentro de la insignia */
+.badge-icon {
+    font-size: 0.8rem;
+}
+
+/* Define el estilo del título principal usando fuente Serif clásica */
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+/* Cambia el color del texto a dorado para resaltar palabras clave en el título */
+.hero-title .highlight {
+    color: #e5a93b;
+}
+
+/* Estiliza el párrafo descriptivo debajo del título */
+.hero-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+/* Alinea los botones de llamada a la acción en una fila */
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+/* Diseña el botón principal de llamado a la acción en color turquesa */
+.btn-teal {
+    background-color: #1cd3b6;
+    color: #0c182b;
+    text-decoration: none;
+    padding: 0.85rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+/* Eleva y da un resplandor al botón turquesa al pasar el cursor */
+.btn-teal:hover {
+    background-color: #18be32;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(28, 211, 182, 0.3);
+}
+
+/* Diseña el botón secundario transparente con borde traslúcido */
+.btn-outline {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.85rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+/* Aumenta la opacidad del botón secundario al pasar el cursor */
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Dibuja la línea horizontal fina dorada al final de la portada */
+.bottom-accent-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #e5a93b;
+    z-index: 10;
+}
+
+
+/* Reduce el tamaño del título en pantallas medianas (tablets) */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Adapta la distribución de la cabecera y botones para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-wrap: wrap;
+    }
+    
+    .search-box {
+        order: 3;
+        max-width: 100%;
+        margin: 0.5rem 0 0 0;
+    }
+
+    .hero-title {
+        font-size: 2.1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.98rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-teal, .btn-outline {
+        text-align: center;
+    }
+}
+.stats-bar {
+    background-color: #e5a93b;
+    padding: 1.5rem 2rem;
+    color: #0c182b;
+}
+
+.stats-container {
+    max-width: 1350px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex: 1;
+    min-width: 220px;
+    justify-content: center;
+}
+
+.stat-icon {
+    font-size: 1.8rem;
+    color: #0c182b;
+}
+
+.stat-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(12, 24, 43, 0.85);
+}
+/* ==========================================
+   DISEÑO RESPONSIVO (INDEX)
+   ========================================== */
+/* Tablets y pantallas medianas */
+@media (max-width: 992px) {
+    .hero-title { font-size: 2.5rem; }
+    .stat-item { min-width: 40%; justify-content: flex-start; }
+}
+
+/* Teléfonos móviles */
+@media (max-width: 768px) {
+    .nav-container { flex-wrap: wrap; justify-content: space-between; }
+    /* La barra de búsqueda baja y ocupa el 100% del ancho */
+    .search-box { order: 3; max-width: 100%; margin: 1rem 0 0 0; flex: 100%; }
+    
+    .hero-title { font-size: 2.1rem; }
+    .hero-subtitle { font-size: 0.98rem; }
+    
+    /* Botones apilados y anchos */
+    .hero-buttons { flex-direction: column; align-items: stretch; }
+    .btn-teal, .btn-outline { text-align: center; width: 100%; }
+    
+    /* Estadísticas en una sola columna */
+    .stats-container { flex-direction: column; align-items: flex-start; }
+    .stat-item { min-width: 100%; }
+    
+    /* Ajuste del Modal de Login */
+    .modal-content { padding: 1.5rem; width: 95%; }
+}
+
+/* ==========================================
+   MODAL DE INGRESO (LOGIN)
+   ========================================== */
+.modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    inset: 0;
+    background-color: rgba(11, 21, 38, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    color: #0b1526;
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.8rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover { color: #e5a93b; }
+
+.modal-header { text-align: center; margin-bottom: 1.5rem; }
+
+.modal-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(28, 211, 182, 0.15);
+    color: #0f8e79;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1rem;
+}
+
+.modal-header h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.modal-header p { font-size: 0.9rem; color: #64748b; }
+
+.modal-body input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.modal-body input:focus { border-color: #1cd3b6; }
+/* Espaciado para el formulario de login */
+.input-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0b1526;
+    margin-bottom: 0.4rem;
+}
+
+.modal-body input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.modal-body input:focus { 
+    border-color: #1cd3b6; 
+}
