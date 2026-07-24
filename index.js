@@ -1,15 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // ==========================================
+    // 1. LÓGICA DEL MODAL (INGRESO)
+    // ==========================================
     const modal = document.getElementById('loginModal');
     const btnEmpezar = document.getElementById('btnEmpezar');
-    const userBtn = document.querySelector('.user-btn'); // El icono del usuario en el menú
+    const userBtn = document.querySelector('.user-btn'); 
     const closeModal = document.getElementById('closeModal');
     const saveUserBtn = document.getElementById('saveUserBtn');
     const userNameInput = document.getElementById('userNameInput');
+    const userPasswordInput = document.getElementById('userPasswordInput'); 
 
     // Función para abrir el modal
     const openModal = () => {
-        modal.style.display = 'flex';
-        userNameInput.focus();
+        if (modal) {
+            modal.style.display = 'flex';
+            if (userNameInput) userNameInput.focus(); // Pone el cursor en el input
+        }
     };
 
     // Eventos para abrir el modal
@@ -17,15 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (userBtn) userBtn.addEventListener('click', openModal);
 
     // Eventos para cerrar el modal
-    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    if (closeModal) {
+        closeModal.addEventListener('click', () => modal.style.display = 'none');
+    }
     window.addEventListener('click', (e) => {
         if (e.target === modal) modal.style.display = 'none';
     });
-
-    
-});
-
-const userPasswordInput = document.getElementById('userPasswordInput'); // <-- Nuevo campo capturado
 
     // Guardar usuario y redirigir
     const loginUser = () => {
@@ -49,14 +53,14 @@ const userPasswordInput = document.getElementById('userPasswordInput'); // <-- N
 
         // Si ambos están llenos, simulamos el ingreso exitoso
         if (isValid) {
-            // Guardamos el nombre
+            // Guardamos el nombre COMPLETO (para el certificado)
             localStorage.setItem('naylampUserName', name);
             
             // Cambiamos el texto del botón para simular carga
             saveUserBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Validando...';
             saveUserBtn.style.opacity = '0.8';
             
-            // Pequeña pausa de 1 segundo para que parezca que está "cargando" el sistema
+            // Pausa de 0.8 segundos para el efecto de validación
             setTimeout(() => {
                 window.location.href = 'progreso.html';
             }, 800);
@@ -64,12 +68,34 @@ const userPasswordInput = document.getElementById('userPasswordInput'); // <-- N
     };
 
     // Ejecutar al dar clic en ingresar
-    saveUserBtn.addEventListener('click', loginUser);
+    if (saveUserBtn) saveUserBtn.addEventListener('click', loginUser);
     
-    // Ejecutar al presionar "Enter" en cualquier campo
-    userNameInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') userPasswordInput.focus(); // Pasa a la contraseña
-    });
-    userPasswordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') loginUser(); // Intenta ingresar
-    });
+    // Ejecutar al presionar "Enter" en los campos
+    if (userNameInput) {
+        userNameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') userPasswordInput.focus(); // Pasa a la contraseña
+        });
+    }
+    if (userPasswordInput) {
+        userPasswordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') loginUser(); // Intenta ingresar
+        });
+    }
+
+    // ==========================================
+    // 2. LÓGICA DEL BUSCADOR DEL INICIO
+    // ==========================================
+    const searchBox = document.querySelector('.search-box input');
+    
+    if (searchBox) {
+        searchBox.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const termino = searchBox.value.trim();
+                if (termino !== '') {
+                    // Manda la palabra clave a la página de módulos a través de la URL
+                    window.location.href = `modulo.html?buscar=${encodeURIComponent(termino)}`;
+                }
+            }
+        });
+    }
+});

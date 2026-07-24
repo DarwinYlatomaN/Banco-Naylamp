@@ -77,4 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         });
     });
+
+    // ==========================================
+    // 4. CAPTURAR BÚSQUEDA DESDE EL INICIO (AGREGADO QUIRÚRGICO)
+    // ==========================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const buscarTermino = urlParams.get('buscar');
+    
+    if (buscarTermino && searchInput) {
+        // Escribimos el término en la barra de búsqueda visualmente
+        searchInput.value = buscarTermino;
+        
+        // Llamamos directamente a tu propia función de filtrado
+        filterCourses();
+    }
 });

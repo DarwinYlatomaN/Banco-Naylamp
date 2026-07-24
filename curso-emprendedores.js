@@ -1,23 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cursoId = 'emprendedores';
     
-    // Obtener datos del usuario
     const userName = localStorage.getItem('naylampUserName') || 'Usuario Invitado';
     const progressKey = `naylamp_progress_${userName}`;
     let userProgress = JSON.parse(localStorage.getItem(progressKey)) || { app: 0, intereses: 0, debito: 0, ahorro: 0, credito: 0, ciberseguridad: 0, emprendedores: 0 };
 
-    // Temario específico de ESTE módulo
-    const lecciones = [{"tema": "1. Separa tus finanzas", "texto": "Nunca mezcles el dinero de tu negocio con tus gastos personales. Esta es la regla de oro para saber tu rentabilidad real."}, {"tema": "2. Cobros con POS", "texto": "Acepta tarjetas de crédito y débito. Aumentarás tus ventas, darás facilidades a tus clientes y reducirás el riesgo del efectivo."}, {"tema": "3. Yape Empresa", "texto": "Agiliza tus cobros diarios, recibe notificaciones de pago al instante, crea perfiles para tus ayudantes y maneja montos mayores."}, {"tema": "4. Fondo de Capital", "texto": "Guarda un porcentaje fijo de tus ganancias mensuales exclusivamente para reinvertir en mercadería o mejorar tu local."}];
+    const lecciones = [
+        {"tema": "1. Separa tus Cuentas", "texto": "El error número uno es mezclar el dinero de tu casa con el del negocio. Abre una cuenta exclusiva para los ingresos de tus ventas."}, 
+        {"tema": "2. Cobros con POS y QR", "texto": "Ofrece todas las facilidades de pago. Adquiere el POS Naylamp para aceptar tarjetas y coloca tu código QR a la vista."}, 
+        {"tema": "3. Herramientas para Negocios", "texto": "Descubre cómo pagar a tus proveedores de forma masiva y programar recordatorios de cobro a tus clientes."}, 
+        {"tema": "4. Flujo de Caja Básico", "texto": "Anota todo lo que entra y todo lo que sale diariamente. Esa es la única forma de saber si tu negocio está siendo realmente rentable."}
+    ];
     
-    let currentSlide = 0;
-    const totalSlides = lecciones.length;
     let currentProgress = userProgress[cursoId] || 0; 
+    let currentSlide = 0;
 
-    // Ajustar slide según el progreso
     if (currentProgress > 0 && currentProgress < 100) {
-        currentSlide = Math.floor((currentProgress / 100) * totalSlides);
-    } else if (currentProgress >= 100) {
-        currentSlide = totalSlides - 1;
+        currentSlide = Math.floor((currentProgress - 1) / 25);
+    } else if (currentProgress === 100) {
+        currentSlide = 3;
     }
 
     const slideTitle = document.getElementById('slideTitle');
@@ -25,45 +26,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursoBar = document.getElementById('cursoBar');
     const cursoPct = document.getElementById('cursoPct');
     const btnAvanzar = document.getElementById('btnAvanzar');
+    const btnVolver = document.getElementById('btnVolver');
+
+    const actionsContainer = document.querySelector('.leccion-actions');
+    if (actionsContainer && !document.getElementById('btnReiniciar')) {
+        const btnReiniciar = document.createElement('button');
+        btnReiniciar.id = 'btnReiniciar';
+        btnReiniciar.className = 'btn';
+        btnReiniciar.style.cssText = 'background-color: white; border: 2px solid #0b1526; color: #0b1526; flex: 1; margin-right: 10px; display: flex; align-items: center; justify-content: center; gap: 5px;';
+        btnReiniciar.innerHTML = '<i class="fa-solid fa-rotate-left"></i> Reiniciar';
+        actionsContainer.insertBefore(btnReiniciar, btnVolver);
+        
+        btnReiniciar.addEventListener('click', () => {
+            if (confirm('¿Estás seguro que deseas reiniciar este curso desde cero?')) {
+                userProgress[cursoId] = 0;
+                localStorage.setItem(progressKey, JSON.stringify(userProgress));
+                window.location.reload();
+            }
+        });
+    }
 
     const renderSlide = () => {
-        let pct = Math.round(((currentSlide) / totalSlides) * 100);
-        if (currentProgress >= 100) pct = 100;
+        let pct = (currentSlide + 1) * 25; 
+        if (currentProgress === 100) pct = 100;
 
         slideTitle.innerText = lecciones[currentSlide].tema;
         slideText.innerText = lecciones[currentSlide].texto;
-
         cursoBar.style.width = `${pct}%`;
         cursoPct.innerText = `${pct}%`;
 
-        if (pct >= 100 || currentProgress >= 100) {
+        if (pct === 100) {
             btnAvanzar.innerHTML = '¡Módulo Completado! <i class="fa-solid fa-check-double"></i>';
             btnAvanzar.classList.add('completado');
+            userProgress[cursoId] = 100;
+            localStorage.setItem(progressKey, JSON.stringify(userProgress));
+            currentProgress = 100;
         } else {
             btnAvanzar.innerHTML = 'Siguiente lección <i class="fa-solid fa-arrow-right"></i>';
+            btnAvanzar.classList.remove('completado');
+            if (pct > (userProgress[cursoId] || 0)) {
+                userProgress[cursoId] = pct;
+                localStorage.setItem(progressKey, JSON.stringify(userProgress));
+            }
         }
     };
 
     btnAvanzar.addEventListener('click', () => {
-        if (currentProgress < 100 && currentSlide < totalSlides - 1) {
-            currentSlide++;
-            currentProgress = Math.round(((currentSlide + 1) / totalSlides) * 100);
-            if (currentProgress > 100) currentProgress = 100;
-            
-            userProgress[cursoId] = currentProgress;
-            localStorage.setItem(progressKey, JSON.stringify(userProgress));
-            renderSlide();
-        } else if (currentProgress < 100 && currentSlide === totalSlides - 1) {
-            currentProgress = 100;
-            userProgress[cursoId] = currentProgress;
-            localStorage.setItem(progressKey, JSON.stringify(userProgress));
+        if (currentSlide < 3) {
+            currentSlide++; 
             renderSlide();
         } else {
             window.location.href = 'modulo.html';
         }
     });
 
-    document.getElementById('btnVolver').addEventListener('click', () => {
+    btnVolver.addEventListener('click', () => {
         window.location.href = 'modulo.html';
     });
 

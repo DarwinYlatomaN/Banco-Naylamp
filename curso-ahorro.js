@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const cursoId = 'ahorro';
+    const cursoId = 'app'; // Ojo: Cambia esto en tus otros archivos (ahorro, debito, etc.)
     
     // Obtener datos del usuario
     const userName = localStorage.getItem('naylampUserName') || 'Usuario Invitado';
@@ -7,45 +7,86 @@ document.addEventListener('DOMContentLoaded', () => {
     let userProgress = JSON.parse(localStorage.getItem(progressKey)) || { app: 0, intereses: 0, debito: 0, ahorro: 0, credito: 0, ciberseguridad: 0, emprendedores: 0 };
 
     // Temario específico
-    const lecciones = [{"tema": "1. La Regla 50/30/20", "texto": "Destina el 50% de tus ingresos a necesidades básicas, 30% a gustos y 20% directamente a tu cuenta de ahorros."}, {"tema": "2. Automatiza tu Ahorro", "texto": "Configura la App Naylamp para que debite automáticamente S/50 cada quincena hacia tu Cuenta Premio."}, {"tema": "3. Fondo de Emergencia", "texto": "Tu primer objetivo de ahorro debe ser juntar el equivalente a 3 meses de tus gastos fijos para cualquier imprevisto."}, {"tema": "4. Evita los 'Gastos Hormiga'", "texto": "Esos cafés diarios o suscripciones que no usas suman mucho a fin de mes. Identifícalos y elimínalos."}];
+    const lecciones = [
+        {"tema": "1. Descarga Segura", "texto": "Aprende a identificar la App oficial en tu tienda de aplicaciones y evita enlaces fraudulentos por SMS."}, 
+        {"tema": "2. Creación de Clave de Internet", "texto": "Genera una clave de 6 dígitos que sea fácil de recordar para ti, pero difícil de adivinar."}, 
+        {"tema": "3. Activación del Token Digital", "texto": "El Token te permite realizar operaciones seguras generando códigos automáticos desde tu celular."}, 
+        {"tema": "4. Tu primera Transferencia", "texto": "Selecciona 'Transferir', ingresa el CCI de destino y confirma la operación. ¡Es totalmente gratis y al instante!"}
+    ];
     
-    // LÓGICA: SIEMPRE INICIA EN TEMA 1 Y AVANZA EN 4 PASOS
-    let currentSlide = 0; 
-    const totalSlides = lecciones.length;
+    // ==========================================
+    // LÓGICA DE PROGRESO (MANTIENE EL AVANCE)
+    // ==========================================
+    let currentProgress = userProgress[cursoId] || 0; 
+    let currentSlide = 0;
 
+    // Si ya avanzó, lo dejamos en la pantalla que le toca (o en la última si ya terminó)
+    if (currentProgress > 0 && currentProgress < 100) {
+        currentSlide = Math.floor((currentProgress - 1) / 25);
+    } else if (currentProgress === 100) {
+        currentSlide = 3;
+    }
+
+    const totalSlides = lecciones.length;
     const slideTitle = document.getElementById('slideTitle');
     const slideText = document.getElementById('slideText');
     const cursoBar = document.getElementById('cursoBar');
     const cursoPct = document.getElementById('cursoPct');
     const btnAvanzar = document.getElementById('btnAvanzar');
+    const btnVolver = document.getElementById('btnVolver');
 
+    // ==========================================
+    // CREAR BOTÓN DE REINICIAR AUTOMÁTICAMENTE
+    // ==========================================
+    const actionsContainer = document.querySelector('.leccion-actions');
+    
+    if (actionsContainer && !document.getElementById('btnReiniciar')) {
+        const btnReiniciar = document.createElement('button');
+        btnReiniciar.id = 'btnReiniciar';
+        btnReiniciar.className = 'btn';
+        // Le damos un diseño blanco con bordes para que destaque pero no compita con los otros botones
+        btnReiniciar.style.cssText = 'background-color: white; border: 2px solid #0b1526; color: #0b1526; flex: 1; margin-right: 10px; display: flex; align-items: center; justify-content: center; gap: 5px;';
+        btnReiniciar.innerHTML = '<i class="fa-solid fa-rotate-left"></i> Reiniciar';
+        
+        // Lo inyectamos antes del botón "Volver"
+        actionsContainer.insertBefore(btnReiniciar, btnVolver);
+        
+        // Función al hacer clic en reiniciar
+        btnReiniciar.addEventListener('click', () => {
+            if (confirm('¿Estás seguro que deseas reiniciar este curso desde cero? Perderás el progreso de este módulo.')) {
+                userProgress[cursoId] = 0;
+                localStorage.setItem(progressKey, JSON.stringify(userProgress));
+                window.location.reload(); // Recarga la página y empieza en 0%
+            }
+        });
+    }
+
+    // ==========================================
+    // RENDERIZAR LA PANTALLA
+    // ==========================================
     const renderSlide = () => {
-        // La fórmula exacta para 4 pasos: 25%, 50%, 75%, 100%
         let pct = (currentSlide + 1) * 25; 
+        
+        // Forzamos el visual a 100% si el usuario ya lo había terminado antes
+        if (currentProgress === 100) pct = 100;
 
-        // Mostrar texto de la lección actual
         slideTitle.innerText = lecciones[currentSlide].tema;
         slideText.innerText = lecciones[currentSlide].texto;
-
-        // Animar barra
         cursoBar.style.width = `${pct}%`;
         cursoPct.innerText = `${pct}%`;
 
-        // Si llegamos al 100% (Paso 4)
         if (pct === 100) {
             btnAvanzar.innerHTML = '¡Módulo Completado! <i class="fa-solid fa-check-double"></i>';
             btnAvanzar.classList.add('completado');
             
-            // Guardar automáticamente el 100% en el perfil del usuario
             userProgress[cursoId] = 100;
             localStorage.setItem(progressKey, JSON.stringify(userProgress));
+            currentProgress = 100; // Actualizar variable local
         } else {
             btnAvanzar.innerHTML = 'Siguiente lección <i class="fa-solid fa-arrow-right"></i>';
             btnAvanzar.classList.remove('completado');
             
-            // Guardar el progreso actual SOLAMENTE si es mayor al que ya tenía antes
-            let savedProgress = userProgress[cursoId] || 0;
-            if (pct > savedProgress) {
+            if (pct > (userProgress[cursoId] || 0)) {
                 userProgress[cursoId] = pct;
                 localStorage.setItem(progressKey, JSON.stringify(userProgress));
             }
@@ -53,20 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     btnAvanzar.addEventListener('click', () => {
-        // Si aún no llegamos a la última diapositiva
         if (currentSlide < 3) {
-            currentSlide++; // Avanzar al siguiente tema
+            currentSlide++; 
             renderSlide();
         } else {
-            // Si ya estamos en el 100% y hacemos clic, nos regresa al catálogo
             window.location.href = 'modulo.html';
         }
     });
 
-    document.getElementById('btnVolver').addEventListener('click', () => {
+    btnVolver.addEventListener('click', () => {
         window.location.href = 'modulo.html';
     });
 
-    // Iniciar renderizado con una pequeña pausa para la animación de la barra
     setTimeout(renderSlide, 150);
 });
